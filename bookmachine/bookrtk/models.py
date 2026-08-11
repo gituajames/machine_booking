@@ -27,4 +27,11 @@ class BookingDetails(models.Model):
     message = models.CharField(max_length=2000)
 
 
+class Visitors(models.Model):
+    ip_addres_of_visitor = models.CharField(max_length=50)
+    user_agent = models.CharField(max_length=100)
+    path = models.CharField(max_length=100)
+    visiting_time = models.DateTimeField(auto_now_add=True)
+
+
 # Create your models here.

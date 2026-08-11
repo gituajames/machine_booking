@@ -2,10 +2,18 @@ from django.shortcuts import render, redirect
 from .models import BookingDetails
 
 # settings
-from django.conf import settings
+# from django.conf import settings
 
 # django sending mail
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
+
+
+# TO DO
+# use forms.py for safer validation
+# add finance area and genrate financial and booking reports weekly
+# send emails to admins
+# validate dates to prevent passed dates
+# add machines and prices to database
 
 
 def index(request):
@@ -36,27 +44,6 @@ def book_machine(request):
 
             message = message,
         )
-
-        mail_subject = "Geomird machine Booking {}".format(booking.machine_booked)
-        mail_body_message = "Hello {}, \nYou have booked {}, \nfor date {} to {}, \nbooking reference geo-00{}2026\
-        \nOur team will conntact you via \n{} \nfor payment and collection arragements to finalize the booking".format(
-            booking.name_of_person_booking,
-            booking.machine_booked,
-            booking.rental_start_date,
-            booking.rental_end_date,
-            booking.id,
-            booking.phone_of_person_booking,
-        )
-
-        try:
-            send_mail(
-            mail_subject,
-            mail_body_message,
-            settings.EMAIL_HOST_USER,
-            [booking.email_of_person_booking]
-        )
-        except Exception as e:
-            print(e)
 
         context = {
             'booking' : booking,
