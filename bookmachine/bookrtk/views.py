@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BookingDetails
+from .models import BookingDetails, RtkPresent
 
 # settings
 # from django.conf import settings
@@ -17,7 +17,12 @@ from .models import BookingDetails
 
 
 def index(request):
-    return render(request, 'index.html',)
+    machines_present = RtkPresent.objects.all()
+
+    context = {
+        'machines_present': machines_present,
+    }
+    return render(request, 'index.html', context)
 
 
 def book_machine(request):

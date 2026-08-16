@@ -1152,12 +1152,36 @@
 
                         <!-- EQUIPMENT -->
 
+                        
+
                         <div class="col-12">
 
                             <label class="form-label">
                                 Equipment
                             </label>
+                            {% if machines_present %}
 
+                            
+                            <select class="form-select"
+                                    name="equipment"
+                                    id="equipmentSelect"
+                                    required>
+
+                                <option value="">
+                                    Select equipment
+                                </option>
+
+                                {% for machine in machines_present  %}
+
+                                <option value="{{ machine.machine_model }}">
+                                    {{ machine.machine_model}}
+                                </option>
+                                {% endfor %}
+
+                                
+
+                            </select>
+                            {% else %}
                             <select class="form-select"
                                     name="equipment"
                                     id="equipmentSelect"
@@ -1180,6 +1204,7 @@
                                 </option>
 
                             </select>
+                            {% endif %}
 
                         </div>
 

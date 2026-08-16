@@ -4,7 +4,10 @@ from django.db import models
 
 class RtkPresent(models.Model):
     machine_model = models.CharField(max_length=100) # rtk base and rover or total station or rtk rover only
-    machine_brand = models.CharField(max_length=100) # gintec, chcnav or kolida
+    # machine_brand = models.CharField(max_length=100) # gintec, chcnav or kolida
+    # machine_name = models.CharField(max_length=100)  # 
+    machine_description = models.CharField(max_length=100)
+    machine_daily_rate = models.IntegerField()
 
 
 class BookingDetails(models.Model):
@@ -28,6 +31,7 @@ class BookingDetails(models.Model):
 
 
 class Visitors(models.Model):
+    session_id = models.CharField(max_length=255, blank=True)
     ip_addres_of_visitor = models.CharField(max_length=50)
     user_agent = models.CharField(max_length=100)
     path = models.CharField(max_length=100)
